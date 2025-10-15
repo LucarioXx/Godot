@@ -6,6 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_paq7w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f4si1"]
+radius = 11.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5gljc"]
 atlas = ExtResource("2_aiwxb")
@@ -49,6 +50,7 @@ animations = [{
 }]
 
 [node name="Slime" type="CharacterBody2D"]
+collision_layer = 4
 script = ExtResource("1_swwnm")
 
 [node name="DetectionArea" type="Area2D" parent="."]
@@ -63,6 +65,7 @@ shape = SubResource("CircleShape2D_f4si1")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_y26kt")
 animation = &"idle"
+autoplay = "idle"
 frame_progress = 0.9762285
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]

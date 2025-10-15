@@ -2,9 +2,8 @@ extends CharacterBody2D
 
 const SPEED = 50
 var cdirection = "none"
+var last_dir = Vector2.DOWN
 
-
-var last_dir = Vector2(0, 1)  # Standard: nach unten schauen
 
 func _physics_process(delta):
 	var input_vector = Vector2(
@@ -14,12 +13,19 @@ func _physics_process(delta):
 	)
 
 	if input_vector != Vector2.ZERO:
+		# Bewegung aktiv
 		input_vector = input_vector.normalized()
 		velocity = input_vector * SPEED
 		animation_player(input_vector)
+		print(input_vector)
 		last_dir = input_vector  # Merke die letzte Bewegungsrichtung
 	else:
+		# Stillstand
 		velocity = Vector2.ZERO
+<<<<<<< HEAD
+		animation_player(last_dir, true)  # true = idle
+	
+=======
 		$AnimatedSprite2D.play("front_idle")
 		
 
@@ -27,28 +33,32 @@ func _physics_process(delta):
 	velocity = input_vector * SPEED 
 
 	# Bewegung ausführen
+>>>>>>> 9924611f371547f0a099df423d6c950db744cb95
 	move_and_slide()
 
-func animation_player(inputvalue):
-	var anim= $AnimatedSprite2D
 
-	if inputvalue.x > 0 and inputvalue.y == 0:
-		anim.flip_h = false
-		anim.play("side_walk")
-	elif inputvalue.x > 0 and inputvalue.y < 0:
-		anim.flip_h = false
-		anim.play("side_walk")
-	elif inputvalue.x > 0 and inputvalue.y > 0:
-		anim.flip_h = false
-		anim.play("side_walk")
-	elif inputvalue.x < 0 and inputvalue.y == 0:
-		anim.flip_h = true
-		anim.play("side_walk")
-	elif inputvalue.x < 0 and inputvalue.y < 0:
-		anim.flip_h = true
-		anim.play("side_walk")
-	elif inputvalue.x < 0 and inputvalue.y > 0:
-		anim.flip_h = true
-		anim.play("side_walk")
+func animation_player(direction: Vector2, is_idle: bool):
+	var anim = $AnimatedSprite2D
 
+<<<<<<< HEAD
+	# --- Bewegung rechts/links ---
+	if direction.x > 0 and abs(direction.x) > abs(direction.y):
+		anim.flip_h = false
+		anim.play("side_idle" if is_idle else "side_walk")
+
+	elif direction.x < 0 and abs(direction.x) > abs(direction.y):
+		anim.flip_h = true
+		anim.play("side_idle" if is_idle else "side_walk")
+
+	# --- Bewegung nach oben ---
+	elif direction.y < 0:
+		anim.flip_h = false
+		anim.play("back_idle" if is_idle else "back_walk")
+
+	# --- Bewegung nach unten ---
+	elif direction.y > 0:
+		anim.flip_h = false
+		anim.play("front_idle" if is_idle else "front_walk")
+=======
 	
+>>>>>>> 9924611f371547f0a099df423d6c950db744cb95

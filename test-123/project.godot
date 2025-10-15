@@ -11,13 +11,23 @@ config_version=5
 [application]
 
 config/name="Test123"
-run/main_scene="uid://cau2puhxa7xhs"
+run/main_scene="uid://cc34swcy2r5hs"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://Assets/icon.svg"
 
 [display]
 
 window/stretch/scale=4.0
+
+[global_group]
+
+Player=""
+
+[layer_names]
+
+2d_physics/layer_1="world"
+2d_physics/layer_2="player"
+2d_physics/layer_3="enemy"
 
 [rendering]
 

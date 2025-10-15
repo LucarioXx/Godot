@@ -24,6 +24,13 @@ func _physics_process(delta):
 		$AnimatedSprite2D.play("front_idle")
 		
 
+<<<<<<< Updated upstream
+=======
+	# Geschwindigkeit berechnen
+	velocity = input_vector * SPEED 
+
+	# Bewegung ausführen
+>>>>>>> Stashed changes
 	move_and_slide()
 
 func animation_player(inputvalue):

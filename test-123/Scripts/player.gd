@@ -17,7 +17,6 @@ func _physics_process(delta):
 		input_vector = input_vector.normalized()
 		velocity = input_vector * SPEED
 		animation_player(input_vector)
-		print(input_vector)
 		last_dir = input_vector  # Merke die letzte Bewegungsrichtung
 	else:
 		velocity = Vector2.ZERO

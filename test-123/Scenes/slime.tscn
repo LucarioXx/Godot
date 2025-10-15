@@ -54,6 +54,8 @@ collision_layer = 4
 script = ExtResource("1_swwnm")
 
 [node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 scale = Vector2(5, 5)

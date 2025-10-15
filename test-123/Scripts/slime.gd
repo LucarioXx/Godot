@@ -14,7 +14,6 @@ var spawn_position
 
 # Diese Funktion wird einmal aufgerufen, wenn der Schleim im Spiel erscheint.
 func _ready():
-	# Wir merken uns, wo wir gestartet sind. Das ist unser Zuhause.
 	spawn_position = global_position
 
 # Diese Funktion wird 60 Mal pro Sekunde aufgerufen.
@@ -22,7 +21,6 @@ func _physics_process(delta):
 	# Die Logik wird basierend auf dem aktuellen Zustand ausgewählt.
 	match current_state:
 		State.IDLE:
-			velocity = Vector2.ZERO
 			$AnimatedSprite2D.play("idle")
 		State.CHASING:
 			chase_player(delta)
@@ -37,7 +35,6 @@ func _on_detection_area_body_entered(body):
 		player = body
 		current_state = State.CHASING
 		print("Player detected! Chasing...")
-
 
 func _on_detection_area_body_exited(body):
 	if body.is_in_group("Player"):
@@ -54,7 +51,20 @@ func chase_player(delta):
 	if distance_to_player > attack_range:
 		var direction = global_position.direction_to(player.global_position)
 		velocity = direction * speed
-		$AnimatedSprite2D.play("move")
+
+		if direction.x > 0 and direction.y == 0:
+			$AnimatedSprite2D.flip_h = false
+			$AnimatedSprite2D.play("side_walk")
+		else:
+			$AnimatedSprite2D.flip_h = true
+			$AnimatedSprite2D.play("side_walk")
+
+		if direction.y < 0:
+			$AnimatedSprite2D.play("up")
+		else:
+			$AnimatedSprite2D.play("down")
+
+		
 	else:
 		current_state = State.RETURNING
 

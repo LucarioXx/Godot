@@ -16,16 +16,16 @@ func _physics_process(delta):
 		# Bewegung aktiv
 		input_vector = input_vector.normalized()
 		velocity = input_vector * SPEED
-		animation_player(input_vector)
+		animation_player(input_vector, false)  # false = nicht idle
 		print(input_vector)
 		last_dir = input_vector  # Merke die letzte Bewegungsrichtung
 	else:
 		# Stillstand
 		velocity = Vector2.ZERO
-<<<<<<< HEAD
+
 		animation_player(last_dir, true)  # true = idle
 	
-=======
+
 		$AnimatedSprite2D.play("front_idle")
 		
 
@@ -33,14 +33,14 @@ func _physics_process(delta):
 	velocity = input_vector * SPEED 
 
 	# Bewegung ausführen
->>>>>>> 9924611f371547f0a099df423d6c950db744cb95
+
 	move_and_slide()
 
 
 func animation_player(direction: Vector2, is_idle: bool):
 	var anim = $AnimatedSprite2D
 
-<<<<<<< HEAD
+
 	# --- Bewegung rechts/links ---
 	if direction.x > 0 and abs(direction.x) > abs(direction.y):
 		anim.flip_h = false
@@ -59,6 +59,3 @@ func animation_player(direction: Vector2, is_idle: bool):
 	elif direction.y > 0:
 		anim.flip_h = false
 		anim.play("front_idle" if is_idle else "front_walk")
-=======
-	
->>>>>>> 9924611f371547f0a099df423d6c950db744cb95

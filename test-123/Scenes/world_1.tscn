@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://cau2puhxa7xhs" path="res://Scenes/player.tscn" id="2_ax6sa"]
 
 [node name="World_1" type="Node2D"]
-position = Vector2(1, 0)
 
 [node name="Slime" parent="." instance=ExtResource("1_brd3p")]
 position = Vector2(161, 72)

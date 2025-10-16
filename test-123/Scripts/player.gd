@@ -26,7 +26,6 @@ func _physics_process(delta):
 		animation_player(last_dir, true)  # true = idle
 	
 
-		$AnimatedSprite2D.play("front_idle")
 		
 
 	# Geschwindigkeit berechnen

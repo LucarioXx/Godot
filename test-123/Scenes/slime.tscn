@@ -261,5 +261,9 @@ sprite_frames = SubResource("SpriteFrames_y26kt")
 animation = &"side_walk"
 autoplay = "idle"
 
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.5
+
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

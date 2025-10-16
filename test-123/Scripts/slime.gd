@@ -6,6 +6,7 @@ enum State { IDLE, CHASING, ATTACKING, RETURNING }
 @export var health = 100
 @export var speed = 25
 @export var attack_range = 10# Etwas größerer Wert für bessere Tests
+@export var attack_damage = 10
 
 var current_state = State.IDLE
 var player
@@ -76,9 +77,10 @@ func _on_detection_area_body_exited(body):
 # NEU: Diese Funktion wird aufgerufen, wenn der AttackTimer abläuft.
 func _on_attack_timer_timeout():
 	if player and global_position.distance_to(player.global_position) <= attack_range:
-		print("Slime attacks the player!")
-	
-	current_state = State.CHASING
+		GameMangager.take_damage(attack_damage) # Verursacht Schaden beim Spieler.
+		current_state = State.CHASING
+	else:
+		current_state = State.RETURNING
 
 	
 
